@@ -1,4 +1,5 @@
 --LUA
+--bad solution needs improvement once i do math
 local numbers = [[+16
 +9
 +11
