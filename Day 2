@@ -1,0 +1,20 @@
+function getLines()
+	local lines = {}
+	line = string.gsub(".-\n")
+	return lines
+end
+
+function processLines(linesTable)
+	for _, line in pairs(linesTable) do
+		for letter in pairs(line) do
+			
+		end
+	end
+end
+
+function main()
+	lines = getLines()
+	processLines()
+end
+
+main()
