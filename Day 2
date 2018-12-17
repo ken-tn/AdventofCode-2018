@@ -1,4 +1,9 @@
-local in = [[abcdef
+getmetatable('').__index = function(str,i)
+  return string.sub(str,i,i) 
+end
+--lua wiki http://lua-users.org/wiki/StringIndexing
+
+local input = [[abcdef
 asdasdasasd
 asdfasdfzxcvzxv
 adsfasdfasdfsfasdf
@@ -40,7 +45,7 @@ function processLines(linesTable, instancesOfLetters)
 end
 
 function main()
-	lines = getLines()
+	lines = getLines(input)
 	twoCount = processLines(lines, 2)
 	threeCount = processLines(lines, 3)
 	print(twoCount * threeCount)
