@@ -1,14 +1,38 @@
-function getLines()
-	local lines = {}
-	line = string.gsub(".-\n")
-	return lines
+local in = [[abcdef
+asdasdasasd
+asdfasdfzxcvzxv
+adsfasdfasdfsfasdf
+fffffffff
+szxcvxvvzxcvvvvvvv
+fsdfafffff
+]]
+
+function getLines(str)
+	local linesTable = {}
+	
+	for number in str:gmatch("[^\r\n]+") do
+   		table.insert(linesTable, number)
+	end
+	
+	return linesTable
 end
 
-function processLines(linesTable)
+function processLinesForTwo(linesTable)
 	for _, line in pairs(linesTable) do
+		local letterTable = {}
 		for letter in pairs(line) do
-			
+			for _, v in pairs(letterTable) do
+				if letter == v then
+					twoCount = twoCount + 1
+				end
+			end
+			table.insert(letterTable, letter)
 		end
+	end
+end
+
+function processLinesForThree(linesTable)
+	for _, line in pairs(linesTable) do
 	end
 end
 
