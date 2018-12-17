@@ -17,28 +17,33 @@ function getLines(str)
 	return linesTable
 end
 
-function processLinesForTwo(linesTable)
+function processLinesForThree(linesTable, instancesOfLetters)
+	local threeCount = 0
+	
 	for _, line in pairs(linesTable) do
 		local letterTable = {}
 		for letter in pairs(line) do
 			for _, v in pairs(letterTable) do
+				local instances = 0
 				if letter == v then
-					twoCount = twoCount + 1
+					instances = instances + 1
+					if instances == 3 then
+						threeCount = threeCount + 1
+					end
 				end
 			end
 			table.insert(letterTable, letter)
 		end
 	end
-end
-
-function processLinesForThree(linesTable)
-	for _, line in pairs(linesTable) do
-	end
+	
+	return threeCount
 end
 
 function main()
 	lines = getLines()
-	processLines()
+	twoCount = processLines(lines, 2)
+	threeCount = processLines(lines, 3)
+	print(twoCount * threeCount)
 end
 
 main()
