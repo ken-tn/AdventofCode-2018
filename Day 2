@@ -17,8 +17,8 @@ function getLines(str)
 	return linesTable
 end
 
-function processLinesForThree(linesTable, instancesOfLetters)
-	local threeCount = 0
+function processLines(linesTable, instancesOfLetters)
+	local recurrencesCounter = 0
 	
 	for _, line in pairs(linesTable) do
 		local letterTable = {}
@@ -36,7 +36,7 @@ function processLinesForThree(linesTable, instancesOfLetters)
 		end
 	end
 	
-	return threeCount
+	return recurrencesCounter
 end
 
 function main()
