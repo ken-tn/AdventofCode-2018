@@ -1,15 +1,4 @@
-getmetatable('').__index = function(str,i)
-  return string.sub(str,i,i) 
-end
---lua wiki http://lua-users.org/wiki/StringIndexing
-
-local input = [[abcdef
-asdasdasasd
-asdfasdfzxcvzxv
-adsfasdfasdfsfasdf
-fffffffff
-szxcvxvvzxcvvvvvvv
-fsdfafffff
+local input = [[
 ]]
 
 function getLines(str)
@@ -26,20 +15,23 @@ function processLines(linesTable, instancesOfLetters)
 	local recurrencesCounter = 0
 	
 	for _, line in pairs(linesTable) do
-		local letterTable = {}
-		for letter in pairs(line) do
-			for _, v in pairs(letterTable) do
-				local instances = 0
-				if letter == v then
-					instances = instances + 1
-					if instances == 3 then
-						threeCount = threeCount + 1
-					end
-				end
-			end
-			table.insert(letterTable, letter)
-		end
-	end
+		local letterDictionary = {}
+		for char in line:gmatch"." do
+      if letterDictionary[char] == nil then
+        letterDictionary[char] = 1
+      else
+        letterDictionary[char] = letterDictionary[char] + 1
+      end
+    end
+
+    local triggered = false
+    for _, recurrences in pairs(letterDictionary) do
+      if recurrences == instancesOfLetters and not triggered then
+        recurrencesCounter = recurrencesCounter + 1
+        triggered = true
+      end
+    end
+  end
 	
 	return recurrencesCounter
 end
